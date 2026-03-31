@@ -219,6 +219,26 @@ main {
   margin-top: 10px;
 }
 
+.sub-score {
+  font-weight: bold;
+  color: #d4af37; /* That luxury gold touch */
+  margin-left: 10px;
+}
+
+.congrats-text {
+  margin-top: 0;
+  color: #2c3e50;
+  font-size: 1.4rem;
+}
+
+.breakdown-container {
+  background: #fdfdfd;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
 .credit {
   text-align: center;
   font-size: 14px;
