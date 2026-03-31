@@ -1012,31 +1012,74 @@ function switchSubject(subject) {
 
 // --- UPDATED: Submit and Review Logic ---
 function submitExam() {
-  clearInterval(countdownTimer); // Stop the clock
-  let score = 0;
-  let totalQuestions = 180;
+  clearInterval(countdownTimer);
 
+  let totalScore = 0;
+  let totalPossible = 0;
+  let subjectBreakdownHTML = `<ul class="subject-breakdown">`;
+
+  // 1. Calculate Score Breakdown
   for (const subject in jambQuestions) {
+    let subScore = 0;
+    let subTotal = jambQuestions[subject].length;
+
     jambQuestions[subject].forEach((q, idx) => {
       if (userAnswers[subject][idx] === q.a) {
-        score++;
+        subScore++;
       }
     });
+
+    totalScore += subScore;
+    totalPossible += subTotal;
+
+    subjectBreakdownHTML += `
+      <li>
+        <strong>${subject.toUpperCase()}:</strong> ${subScore} / ${subTotal}
+      </li>`;
   }
+  subjectBreakdownHTML += `</ul>`;
 
-  const percentage = ((score / totalQuestions) * 100).toFixed(2);
+  // 2. Save to "No-Backend" Leaderboard
+  saveToLocalLeaderboard(totalScore);
 
+  // 3. Prepare Viral Sharing
+  const shareText = encodeURIComponent(
+    `🔥 I just finished my JAMB Mock Practice! \n🎯 Score: ${totalScore}/${totalPossible} \n🚀 Think you can beat me? Try it here: ${window.location.href}`,
+  );
+  const whatsappUrl = `https://wa.me/?text=${shareText}`;
+
+  // 4. Render Results Page
   document.querySelector(".exam-container").innerHTML = `
     <div class="result-card">
-      <h2>Exam Completed</h2>
-      <p>Your Total Score: <span class="score-highlight">${score} / ${totalQuestions}</span></p>
-      <p>Percentage: <strong>${percentage}%</strong></p>
+      <h2>Exam Completed!</h2>
+      <div class="score-circle">
+        <span class="big-score">${totalScore}</span>
+        <span class="total-possible">/ ${totalPossible}</span>
+      </div>
+      
+      <h3>Subject Breakdown</h3>
+      ${subjectBreakdownHTML}
+
+      <div class="leaderboard-section">
+        <h3>Your Personal Best (Top 5)</h3>
+        <div id="local-leaderboard"></div>
+      </div>
+
       <div class="result-actions">
-        <button class="btn btn--primary" onclick="showReview()">Review Answers</button>
-        <button class="btn btn--secondary" onclick="window.location.reload()">Restart Practice</button>
+        <a href="${whatsappUrl}" target="_blank" class="btn btn--whatsapp">
+           Share on WhatsApp
+        </a>
+        <button class="btn btn--secondary" onclick="window.location.reload()">
+           Try Again
+        </button>
+        <button class="btn btn--primary" onclick="showReview()">
+           Review Corrections
+        </button>
       </div>
     </div>
   `;
+
+  displayLocalLeaderboard();
   (adsbygoogle = window.adsbygoogle || []).push({});
 }
 
@@ -1116,3 +1159,41 @@ beginBtn.onclick = () => {
   startTimer();
   renderQuestion();
 };
+
+function saveToLocalLeaderboard(score) {
+  // Get existing scores from LocalStorage or start with an empty array
+  let scores = JSON.parse(localStorage.getItem("jamb_history")) || [];
+
+  // Add new score with date
+  const newEntry = {
+    score: score,
+    date: new Date().toLocaleDateString(),
+  };
+
+  scores.push(newEntry);
+
+  // Sort by highest score first and keep only top 5
+  scores.sort((a, b) => b.score - a.score);
+  scores = scores.slice(0, 5);
+
+  // Save back to LocalStorage
+  localStorage.setItem("jamb_history", JSON.stringify(scores));
+}
+
+function displayLocalLeaderboard() {
+  const scores = JSON.parse(localStorage.getItem("jamb_history")) || [];
+  const container = document.getElementById("local-leaderboard");
+
+  if (scores.length === 0) {
+    container.innerHTML = "<p>No records yet!</p>";
+    return;
+  }
+
+  let listHTML = `<ol class="leaderboard-list">`;
+  scores.forEach((entry) => {
+    listHTML += `<li><strong>${entry.score}</strong> <small>(${entry.date})</small></li>`;
+  });
+  listHTML += `</ol>`;
+
+  container.innerHTML = listHTML;
+}

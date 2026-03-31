@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
   --primary-color: #1a1a1a;
@@ -21,7 +21,7 @@ main {
   min-height: 70vh;
 }
 
-.overlay{
+.overlay {
   min-height: 70vh;
   display: flex;
   justify-content: center;
@@ -29,7 +29,7 @@ main {
   gap: 20px;
 }
 
-.start-card button{
+.start-card button {
   margin-top: 20px;
 }
 
@@ -74,8 +74,8 @@ main {
   min-height: 200px;
 }
 
-.controls{
-    margin-top: 20px;
+.controls {
+  margin-top: 20px;
 }
 
 .btn {
@@ -177,11 +177,53 @@ main {
   text-align: center;
 }
 
-.credit{
-    text-align: center;
-    font-size: 14px;
+.score-circle {
+  background: #f8f9fa;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px auto;
+  border: 5px solid #d4af37; /* Minimalist gold */
 }
 
-.credit a{
-    color: var(--accent-color);
+.big-score {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+.subject-breakdown {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+}
+.subject-breakdown li {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.btn--whatsapp {
+  background-color: #25d366;
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.leaderboard-list {
+  text-align: left;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.credit {
+  text-align: center;
+  font-size: 14px;
+}
+
+.credit a {
+  color: var(--accent-color);
 }
