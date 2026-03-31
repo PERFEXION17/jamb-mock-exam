@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JAMB Mock Simulation| 2026</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="exam-body">
+    <header class="header">
+      <h1 class="header__title">JAMB CBT Simulation</h1>
+      <div class="timer" id="timer">Time Left: 02:00:00</div>
+    </header>
+
+    <nav class="subject-nav">
+      <button class="subject-nav__btn active" data-subject="english">
+        English
+      </button>
+      <button class="subject-nav__btn" data-subject="biology">Biology</button>
+      <button class="subject-nav__btn" data-subject="physics">Physics</button>
+      <button class="subject-nav__btn" data-subject="chemistry">
+        Chemistry
+      </button>
+    </nav>
+
+    <main class="exam-container">
+      <div class="question-card" id="question-area">
+        <p class="question-card__text">
+          Select a subject to begin your practice.
+        </p>
+        <div class="question-card__options" id="options-area"></div>
+      </div>
+
+      <footer class="controls">
+        <button class="btn btn--secondary" id="prev-btn">Previous</button>
+        <button class="btn btn--primary" id="next-btn">Next</button>
+        <button class="btn btn--danger" id="submit-btn">Submit Exam</button>
+      </footer>
+    </main>
+    <div class="credit"><p>&copy; 2026 All Rights Reserved | <a href="https://wa.me/2348100334346?text=Hello,%20Mr.%20Achusim%20Chibuike%20Joseph" target="_blank">PERFEXION INC.</a></p></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
