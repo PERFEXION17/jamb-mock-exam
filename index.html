@@ -5,41 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JAMB Mock Simulation| 2026</title>
     <link rel="stylesheet" href="styles.css" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8054586171745918"
-     crossorigin="anonymous"></script>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8054586171745918"
+      crossorigin="anonymous"
+    ></script>
   </head>
+
   <body class="exam-body">
-    <header class="header">
-      <h1 class="header__title">JAMB CBT Simulation</h1>
-      <div class="timer" id="timer">Time Left: 02:00:00</div>
-    </header>
-
-    <nav class="subject-nav">
-      <button class="subject-nav__btn active" data-subject="english">
-        English
-      </button>
-      <button class="subject-nav__btn" data-subject="biology">Biology</button>
-      <button class="subject-nav__btn" data-subject="physics">Physics</button>
-      <button class="subject-nav__btn" data-subject="chemistry">
-        Chemistry
-      </button>
-    </nav>
-
-    <main class="exam-container">
-      <div class="question-card" id="question-area">
-        <p class="question-card__text">
-          Select a subject to begin your practice.
-        </p>
-        <div class="question-card__options" id="options-area"></div>
+    <div id="start-screen" class="overlay">
+      <div class="start-card">
+        <h1>JAMB 2026 Mock Exam</h1>
+        <p>4 Subjects | 180 Questions | 120 Minutes</p>
+        <ul class="instructions">
+          <li>Ensure you have a stable internet connection.</li>
+          <li>The timer starts once you click the button below.</li>
+          <li>Good luck, future scholar!</li>
+        </ul>
+        <button id="begin-btn" class="btn btn--primary">Start Exam Now</button>
       </div>
+    </div>
 
-      <footer class="controls">
-        <button class="btn btn--secondary" id="prev-btn">Previous</button>
-        <button class="btn btn--primary" id="next-btn">Next</button>
-        <button class="btn btn--danger" id="submit-btn">Submit Exam</button>
-      </footer>
-    </main>
-    <div class="credit"><p>&copy; 2026 All Rights Reserved | <a href="https://wa.me/2348100334346?text=Hello,%20Mr.%20Achusim%20Chibuike%20Joseph" target="_blank">PERFEXION INC.</a></p></div>
+    <div id="main-exam-container" style="display: none">
+      <header class="header">
+        <h1 class="header__title">JAMB CBT Simulation</h1>
+        <div class="timer" id="timer">Time Left: 02:00:00</div>
+      </header>
+
+      <nav class="subject-nav">
+        <button class="subject-nav__btn active" data-subject="english">
+          English
+        </button>
+        <button class="subject-nav__btn" data-subject="biology">Biology</button>
+        <button class="subject-nav__btn" data-subject="physics">Physics</button>
+        <button class="subject-nav__btn" data-subject="chemistry">
+          Chemistry
+        </button>
+      </nav>
+
+      <main class="exam-container">
+        <div class="question-card" id="question-area">
+          <p class="question-card__text">
+            Select a subject to begin your practice.
+          </p>
+          <div class="question-card__options" id="options-area"></div>
+        </div>
+
+        <footer class="controls">
+          <button class="btn btn--secondary" id="prev-btn">Previous</button>
+          <button class="btn btn--primary" id="next-btn">Next</button>
+          <button class="btn btn--danger" id="submit-btn">Submit Exam</button>
+        </footer>
+      </main>
+    </div>
+    <div class="credit">
+      <p>
+        &copy; 2026 All Rights Reserved |
+        <a
+          href="https://wa.me/2348100334346?text=Hello,%20Mr.%20Achusim%20Chibuike%20Joseph"
+          target="_blank"
+          >PERFEXION INC.</a
+        >
+      </p>
+    </div>
 
     <script src="script.js"></script>
   </body>

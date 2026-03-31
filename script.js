@@ -923,14 +923,14 @@ const jambQuestions = {
 // State Management
 let currentSubject = "english";
 let currentIdx = 0;
-let timeLeft = 120 * 60; 
+let timeLeft = 120 * 60;
 let countdownTimer; // Made global so it can be cleared easily
 
 let userAnswers = {
   english: Array(60).fill(null),
   biology: Array(40).fill(null),
   physics: Array(40).fill(null),
-  chemistry: Array(40).fill(null)
+  chemistry: Array(40).fill(null),
 };
 
 // DOM Elements
@@ -1002,11 +1002,11 @@ function selectOption(index) {
 function switchSubject(subject) {
   currentSubject = subject;
   currentIdx = 0;
-  
-  navButtons.forEach(btn => {
+
+  navButtons.forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.subject === subject);
   });
-  
+
   renderQuestion();
 }
 
@@ -1025,7 +1025,7 @@ function submitExam() {
   }
 
   const percentage = ((score / totalQuestions) * 100).toFixed(2);
-  
+
   document.querySelector(".exam-container").innerHTML = `
     <div class="result-card">
       <h2>Exam Completed</h2>
@@ -1037,19 +1037,20 @@ function submitExam() {
       </div>
     </div>
   `;
+  (adsbygoogle = window.adsbygoogle || []).push({});
 }
 
 function showReview() {
   let reviewHTML = `<div class="review-wrapper"><h2>Exam Review</h2>`;
-  
+
   for (const subject in jambQuestions) {
     reviewHTML += `<h3 class="review-subject-title">${subject.toUpperCase()}</h3>`;
-    
+
     jambQuestions[subject].forEach((q, idx) => {
       let userAns = userAnswers[subject][idx];
       let isCorrect = userAns === q.a;
       let statusClass = isCorrect ? "text-correct" : "text-wrong";
-      
+
       let userAnsText = userAns !== null ? q.o[userAns] : "Not Attempted";
       let correctAnsText = q.o[q.a];
 
@@ -1070,13 +1071,13 @@ function showReview() {
       <button class="btn btn--primary" onclick="window.location.reload()">Retake Exam</button>
     </div>
   </div>`;
-  
+
   document.querySelector(".exam-container").innerHTML = reviewHTML;
 }
 // ----------------------------------------
 
 // Event Listeners
-navButtons.forEach(btn => {
+navButtons.forEach((btn) => {
   btn.onclick = () => switchSubject(btn.dataset.subject);
 });
 
@@ -1100,6 +1101,18 @@ submitBtn.onclick = () => {
   }
 };
 
-// Initialise
-startTimer();
-renderQuestion();
+const startScreen = document.getElementById("start-screen");
+const mainContainer = document.getElementById("main-exam-container");
+const beginBtn = document.getElementById("begin-btn");
+
+beginBtn.onclick = () => {
+  // 1. Hide Start Screen
+  startScreen.style.display = "none";
+
+  // 2. Show Exam
+  mainContainer.style.display = "block";
+
+  // 3. Start Logic
+  startTimer();
+  renderQuestion();
+};
