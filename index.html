@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JAMB Mock Simulation| 2026</title>
     <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/thin/style.css"
+    />
     <script
       async
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8054586171745918"
@@ -34,7 +39,7 @@
         <ul class="instructions">
           <li>Ensure you have a stable internet connection.</li>
           <li>The timer starts once you click the button below.</li>
-          <li>Good luck, future scholar!</li>
+          <li>Good luck, <strong>Future Scholar!</strong></li>
         </ul>
         <button id="begin-btn" class="btn btn--primary">Start Exam Now</button>
       </div>
@@ -44,6 +49,7 @@
       <header class="header">
         <h1 class="header__title">JAMB CBT Simulation</h1>
         <div class="timer" id="timer">Time Left: 02:00:00</div>
+        <button id="theme-toggle" class="theme-toggle"><i class="ph-thin ph-power"></i></button>
       </header>
 
       <nav class="subject-nav">
@@ -83,6 +89,6 @@
       </p>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>

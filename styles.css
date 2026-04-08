@@ -4,7 +4,18 @@
   --primary-color: #1a1a1a;
   --accent-color: #d4af37;
   --bg-color: #f9f9f9;
+  --neutral: white;
   --text-color: #333;
+  --shadow: rgba(0, 0, 0, 0.2);
+}
+
+.darkmode {
+  --primary-color: #f9f9f9;
+  --accent-color: #d4af37;
+  --bg-color: #1a1a1a;
+  --neutral: black;
+  --text-color: #ddd;
+  --shadow: rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -29,6 +40,10 @@ main {
   gap: 20px;
 }
 
+.start-card{
+  color: var(--text-color);
+}
+
 .start-card button {
   margin-top: 20px;
 }
@@ -41,16 +56,29 @@ main {
   padding-bottom: 10px;
 }
 
+.header__title {
+  color: var(--text-color);
+}
+
 .timer {
   font-weight: bold;
   font-size: 1.2rem;
   color: #e63946;
 }
 
+.theme-toggle {
+  background: transparent;
+  color: var(--text-color);
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+}
+
 .subject-nav {
   display: flex;
   gap: 10px;
   margin: 20px 0;
+  flex-wrap: wrap;
 }
 
 .subject-nav__btn {
@@ -62,16 +90,17 @@ main {
 }
 
 .subject-nav__btn.active {
-  background: var(--primary-color);
+  background: black;
   color: white;
 }
 
 .question-card {
-  background: white;
   padding: 30px;
-  border-radius: 4px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   min-height: 200px;
+  background: var(--neutral);
+  color: var(--text-color);
+  border-radius: 4px;
+  box-shadow: 0 4px 6px var(--shadow);
 }
 
 .controls {
@@ -88,7 +117,7 @@ main {
 
 .btn--primary {
   background: var(--primary-color);
-  color: white;
+  color: var(--neutral);
 }
 
 .btn--danger {
@@ -122,7 +151,7 @@ main {
 .score-highlight {
   font-size: 2rem;
   font-weight: bold;
-  color: #2c3e50; /* Adjust to your theme */
+  color: var(--text-color); 
 }
 
 .result-actions {
@@ -135,18 +164,18 @@ main {
 .review-wrapper {
   padding: 20px;
   max-height: 80vh;
-  overflow-y: auto; /* Adds a scrollbar for the long list */
+  overflow-y: auto;
 }
 
 .review-subject-title {
   margin-top: 30px;
   border-bottom: 2px solid #eee;
   padding-bottom: 10px;
-  color: #d4af37; /* Match your gold theme */
+  color: var(--accent-color);
 }
 
 .review-item {
-  background: #fdfdfd;
+  background: var(--neutral);
   border: 1px solid #eaeaea;
   padding: 15px;
   margin-bottom: 15px;
@@ -178,30 +207,64 @@ main {
 }
 
 .score-circle {
-  background: #f8f9fa;
+  margin: 20px auto;
   width: 150px;
   height: 150px;
-  border-radius: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 20px auto;
-  border: 5px solid #d4af37; /* Minimalist gold */
+  background: var(--neutral);
+  color: var(--text-color);
+  border-radius: 50%;
+  border: 5px solid var(--accent-color);
 }
 
 .big-score {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #2c3e50;
+  color: var(--text-color);
 }
+
+.breakdown-container {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: var(--neutral);
+  color: var(--text-color);
+  border-radius: 10px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
 .subject-breakdown {
-  list-style: none;
-  padding: 0;
   margin-bottom: 30px;
+  padding: 0;
+  list-style: none;
 }
+
 .subject-breakdown li {
   padding: 8px;
   border-bottom: 1px solid #eee;
+}
+
+.leaderboard-section{
+  color: var(--text-color);
+}
+
+.leaderboard-list {
+  text-align: left;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.sub-score {
+  font-weight: bold;
+  color: var(--accent-color);
+  margin-left: 10px;
+}
+
+.congrats-text {
+  margin-top: 0;
+  color: var(--text-color);
+  font-size: 1.4rem;
 }
 
 .btn--whatsapp {
@@ -213,37 +276,21 @@ main {
   font-weight: bold;
 }
 
-.leaderboard-list {
-  text-align: left;
-  display: inline-block;
-  margin-top: 10px;
-}
-
-.sub-score {
-  font-weight: bold;
-  color: #d4af37; /* That luxury gold touch */
-  margin-left: 10px;
-}
-
-.congrats-text {
-  margin-top: 0;
-  color: #2c3e50;
-  font-size: 1.4rem;
-}
-
-.breakdown-container {
-  background: #fdfdfd;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
-}
 
 .credit {
+  color: var(--text-color);
   text-align: center;
   font-size: 14px;
 }
 
 .credit a {
   color: var(--accent-color);
+}
+
+@media (max-width: 450px) {
+  .controls {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
 }
