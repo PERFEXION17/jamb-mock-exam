@@ -572,6 +572,11 @@ export const jambQuestions = {
 
   biology: [
     {
+      q: "The organ that produces bile in the human body is the",
+      o: ["Pancreas", "Liver", "Gall bladder", "Stomach"],
+      a: 1,
+    },
+    {
       q: "The organelle responsible for the synthesis of proteins is the",
       o: ["Golgi apparatus", "Ribosome", "Lysosome", "Mitochondrion"],
       a: 1,
@@ -784,6 +789,11 @@ export const jambQuestions = {
   ],
 
   chemistry: [
+    {
+      q: "The gas that is used to ripen fruits is",
+      o: ["Oxygen", "Carbon dioxide", "Ethene", "Nitrogen"],
+      a: 2,
+    },
     {
       q: "The number of protons in an atom is known as its",
       o: ["Mass number", "Atomic number", "Neutron number", "Valence number"],
@@ -1017,6 +1027,11 @@ export const jambQuestions = {
   ],
 
   physics: [
+    {
+      q: "The SI unit of pressure is",
+      o: ["Newton", "Pascal", "Joule", "Watt"],
+      a: 1,
+    },
     {
       q: "The rate of change of displacement is called",
       o: ["Speed", "Velocity", "Acceleration", "Momentum"],
