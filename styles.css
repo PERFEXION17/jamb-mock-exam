@@ -21,6 +21,10 @@
 body {
   margin: 0;
   padding: 20px;
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between ;
   font-family:
     "Montserrat",
     -apple-system,
@@ -37,15 +41,99 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   gap: 20px;
 }
 
-.start-card{
+.start-card {
   color: var(--text-color);
 }
 
 .start-card button {
   margin-top: 20px;
+}
+
+.disclaimer{
+  margin-top: 50px;
+  max-width: 70%;
+  color: var(--text-color);
+}
+
+.disclaimer p{
+  font-size: .875rem;
+  font-style: italic;
+  line-height: 1.7;
+}
+
+/* ==================== SUBJECT SELECTION SCREEN ==================== */
+
+#subject-selection-screen .start-card {
+  max-width: 420px;
+  width: 90%;
+  padding: 40px 30px;
+  text-align: center;
+}
+
+#subject-selection-screen h2 {
+  margin-bottom: 8px;
+  color: var(--text-color);
+}
+
+#subject-selection-screen p {
+  margin-bottom: 25px;
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.subject-options {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 25px 0;
+  text-align: left;
+}
+
+.subject-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--neutral);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.05rem;
+}
+
+.subject-label:hover {
+  border-color: var(--accent-color);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.subject-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--accent-color);
+  cursor: pointer;
+}
+
+.selection-status {
+  margin: 20px 0 30px;
+  font-weight: 600;
+  color: var(--accent-color);
+  font-size: 1.05rem;
+}
+
+/* Dark mode support for selection screen */
+.darkmode .subject-label {
+  background: #2a2a2a;
+  border-color: #444;
+}
+
+.darkmode .subject-label:hover {
+  border-color: var(--accent-color);
+  background: rgba(212, 175, 55, 0.1);
 }
 
 .header {
@@ -151,7 +239,7 @@ main {
 .score-highlight {
   font-size: 2rem;
   font-weight: bold;
-  color: var(--text-color); 
+  color: var(--text-color);
 }
 
 .result-actions {
@@ -245,7 +333,7 @@ main {
   border-bottom: 1px solid #eee;
 }
 
-.leaderboard-section{
+.leaderboard-section {
   color: var(--text-color);
 }
 
@@ -276,7 +364,6 @@ main {
   font-weight: bold;
 }
 
-
 .credit {
   color: var(--text-color);
   text-align: center;
@@ -288,6 +375,27 @@ main {
 }
 
 @media (max-width: 450px) {
+.start-card{
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.start-card h1{
+  text-align: center;
+}
+
+  #subject-selection-screen .start-card {
+    padding: 30px 20px;
+  }
+
+  .subject-label {
+    padding: 12px 16px;
+    font-size: 1rem;
+  }
+
   .controls {
     display: flex;
     justify-content: center;

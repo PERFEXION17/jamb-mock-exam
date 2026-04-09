@@ -1,46 +1,52 @@
 import { jambQuestions } from "./questions.js";
 
-// Darkmode
-const themeBtn = document.getElementById('theme-toggle')
-const currentTheme = localStorage.getItem('theme')
+// ==================== STATE MANAGEMENT ====================
+let selectedSubjects = ["english"];
+let currentSubject = "english";
+let currentIdx = 0;
+let timeLeft = 120 * 60;
+let countdownTimer;
+
+let userAnswers = {};
+
+// DOM Elements
+const timerEl = document.getElementById("timer");
+const questionArea = document.getElementById("question-text");
+const optionsArea = document.getElementById("options-area");
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
+const submitBtn = document.getElementById("submit-btn");
+const subjectNav = document.getElementById("subject-nav");
+
+const startScreen = document.getElementById("start-screen");
+const subjectSelectionScreen = document.getElementById(
+  "subject-selection-screen",
+);
+const mainContainer = document.getElementById("main-exam-container");
+
+const beginBtn = document.getElementById("begin-btn");
+const startWithSubjectsBtn = document.getElementById("start-with-subjects");
+const backToStartBtn = document.getElementById("back-to-start");
+
+const selectionStatus = document.getElementById("selection-status");
+const subjectCheckboxes = document.querySelectorAll(".subject-check");
+
+// ==================== DARK MODE ====================
+const themeBtn = document.getElementById("theme-toggle");
+const currentTheme = localStorage.getItem("theme");
 
 if (currentTheme === "dark") {
   document.body.classList.add("darkmode");
 }
 
 function themeToggle() {
-  document.body.classList.toggle('darkmode')
-  let theme = 'light'
-  if (document.body.classList.contains('darkmode')){
-    theme = 'dark'
-  }
-  localStorage.setItem('theme', theme)
+  document.body.classList.toggle("darkmode");
+  const theme = document.body.classList.contains("darkmode") ? "dark" : "light";
+  localStorage.setItem("theme", theme);
 }
-themeBtn.addEventListener('click', themeToggle)
+themeBtn.addEventListener("click", themeToggle);
 
-// State Management
-let currentSubject = "english";
-let currentIdx = 0;
-let timeLeft = 120 * 60;
-let countdownTimer; // Made global so it can be cleared easily
-
-let userAnswers = {
-  english: Array(60).fill(null),
-  biology: Array(40).fill(null),
-  physics: Array(40).fill(null),
-  chemistry: Array(40).fill(null),
-};
-
-// DOM Elements
-const timerEl = document.getElementById("timer");
-const questionArea = document.querySelector(".question-card__text");
-const optionsArea = document.getElementById("options-area");
-const prevBtn = document.getElementById("prev-btn");
-const nextBtn = document.getElementById("next-btn");
-const submitBtn = document.getElementById("submit-btn");
-const navButtons = document.querySelectorAll(".subject-nav__btn");
-
-// --- NEW: Shuffle Logic ---
+// ==================== SHUFFLE QUESTIONS ====================
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -48,12 +54,34 @@ function shuffleArray(array) {
   }
 }
 
-// Shuffle all subjects on initialisation
 for (const subject in jambQuestions) {
   shuffleArray(jambQuestions[subject]);
 }
-// --------------------------
 
+// ==================== INITIALIZE USER ANSWERS ====================
+function initializeUserAnswers() {
+  userAnswers = {};
+  selectedSubjects.forEach((subject) => {
+    const numQuestions = jambQuestions[subject].length;
+    userAnswers[subject] = Array(numQuestions).fill(null);
+  });
+}
+
+// ==================== RENDER SUBJECT NAV ====================
+function renderSubjectNav() {
+  subjectNav.innerHTML = "";
+
+  selectedSubjects.forEach((subject) => {
+    const btn = document.createElement("button");
+    btn.className = `subject-nav__btn ${subject === currentSubject ? "active" : ""}`;
+    btn.textContent = subject.charAt(0).toUpperCase() + subject.slice(1);
+    btn.dataset.subject = subject;
+    btn.onclick = () => switchSubject(subject);
+    subjectNav.appendChild(btn);
+  });
+}
+
+// ==================== TIMER ====================
 function startTimer() {
   countdownTimer = setInterval(() => {
     let hours = Math.floor(timeLeft / 3600);
@@ -71,73 +99,91 @@ function startTimer() {
   }, 1000);
 }
 
+// ==================== RENDER QUESTION ====================
 function renderQuestion() {
   const question = jambQuestions[currentSubject][currentIdx];
-  questionArea.innerHTML = `${currentIdx + 1}. ${question.q}`;
-  optionsArea.innerHTML = "";
 
+  questionArea.innerHTML = `${currentIdx + 1}. ${question.q}`;
+
+  optionsArea.innerHTML = "";
   question.o.forEach((opt, i) => {
     const btn = document.createElement("button");
     btn.className = "option-btn";
     if (userAnswers[currentSubject][currentIdx] === i) {
       btn.classList.add("option-btn--selected");
     }
-    btn.textContent = opt;
+    btn.innerHTML = opt;
     btn.onclick = () => selectOption(i);
     optionsArea.appendChild(btn);
   });
 
-  // Update Button States
   prevBtn.disabled = currentIdx === 0;
   nextBtn.disabled = currentIdx === jambQuestions[currentSubject].length - 1;
+
+  if (window.MathJax) {
+    MathJax.typesetPromise([questionArea, optionsArea]).catch((err) =>
+      console.error("MathJax rendering error:", err),
+    );
+  }
 }
 
+// ==================== SELECT OPTION ====================
 function selectOption(index) {
   userAnswers[currentSubject][currentIdx] = index;
   renderQuestion();
 }
 
+// ==================== SWITCH SUBJECT ====================
 function switchSubject(subject) {
   currentSubject = subject;
   currentIdx = 0;
-
-  navButtons.forEach((btn) => {
-    btn.classList.toggle("active", btn.dataset.subject === subject);
-  });
-
+  renderSubjectNav();
   renderQuestion();
 }
 
-// --- UPDATED: Submit and Review Logic ---
+// ==================== SUBJECT SELECTION LOGIC ====================
+function updateSelection() {
+  const checked = Array.from(subjectCheckboxes).filter((cb) => cb.checked);
+
+  if (checked.length > 3) {
+    this.checked = false;
+    return;
+  }
+
+  selectedSubjects = ["english", ...checked.map((cb) => cb.value)];
+  selectionStatus.textContent = `Selected: English + ${checked.length} more`;
+
+  startWithSubjectsBtn.disabled = checked.length !== 3;
+}
+
+// ==================== SUBMIT EXAM ====================
 function submitExam() {
   clearInterval(countdownTimer);
 
   let totalWeightedScore = 0;
   let subjectBreakdownHTML = `<ul class="subject-breakdown">`;
 
-  // Define weights
   const weights = {
-    english: 100 / 60, // ~1.666
+    english: 100 / 60,
+    mathematics: 2.5,
     biology: 2.5,
     physics: 2.5,
     chemistry: 2.5,
   };
 
-  for (const subject in jambQuestions) {
+  for (const subject of selectedSubjects) {
     let correctCount = 0;
-    let subTotalQuestions = jambQuestions[subject].length;
+    const questions = jambQuestions[subject];
 
-    jambQuestions[subject].forEach((q, idx) => {
+    questions.forEach((q, idx) => {
       if (userAnswers[subject][idx] === q.a) {
         correctCount++;
       }
     });
 
-    // Calculate weighted score for this subject
-    let subjectWeightedScore = correctCount * weights[subject];
-
-    // Round to 1 decimal place for the breakdown, but keep full precision for total
-    let displayScore = subjectWeightedScore.toFixed(1);
+    const weight = weights[subject] || 2.5;
+    const subjectWeightedScore = correctCount * weight;
+    const displayScore = subjectWeightedScore.toFixed(1);
 
     totalWeightedScore += subjectWeightedScore;
 
@@ -145,28 +191,26 @@ function submitExam() {
       <li>
         <strong>${subject.toUpperCase()}:</strong> 
         <span class="sub-score">${displayScore} / 100</span> 
-        <small>(${correctCount} correct)</small>
+        <small>(${correctCount} correct out of ${questions.length})</small>
       </li>`;
   }
 
   subjectBreakdownHTML += `</ul>`;
 
-  // Final Total (Rounded to nearest whole number like JAMB does)
   const finalScore = Math.round(totalWeightedScore);
 
-  // Save to "No-Backend" Leaderboard
   saveToLocalLeaderboard(finalScore);
 
-  // WhatsApp Viral Text
-  const subjectSummary = extractSummary(); // Call the function here
+  const subjectSummary = extractSummary();
 
   const shareText = encodeURIComponent(
     `🎓 *JAMB 2026 MOCK RESULT* 🎓\n\n` +
       `I just scored *${finalScore}/400*! 🎯\n\n` +
       `*Breakdown:*\n${subjectSummary}\n\n` +
-      `Think you can beat my score? Try the 2026 CBT Practice tool here: \n` +
+      `Think you can beat my score? Try the 2026 CBT Practice tool here:\n` +
       `${window.location.href}`,
   );
+
   const whatsappUrl = `https://wa.me/?text=${shareText}`;
 
   document.querySelector(".exam-container").innerHTML = `
@@ -188,7 +232,7 @@ function submitExam() {
       </div>
 
       <div class="result-actions">
-        <a href="${whatsappUrl}" target="_blank" class="btn btn--whatsapp">Share Result</a>
+        <a href="${whatsappUrl}" target="_blank" class="btn btn--whatsapp">Share Result on WhatsApp</a>
         <button class="btn btn--secondary" onclick="window.location.reload()">Retake Exam</button>
         <button class="btn btn--primary" onclick="showReview()">Review Answers</button>
       </div>
@@ -196,12 +240,13 @@ function submitExam() {
   `;
 
   displayLocalLeaderboard();
-  (adsbygoogle = window.adsbygoogle || []).push({});
 }
 
+// ==================== EXTRACT SUMMARY FOR WHATSAPP ====================
 function extractSummary() {
   const weights = {
     english: 100 / 60,
+    mathematics: 2.5,
     biology: 2.5,
     physics: 2.5,
     chemistry: 2.5,
@@ -209,29 +254,22 @@ function extractSummary() {
 
   let summaryParts = [];
 
-  for (const subject in jambQuestions) {
+  for (const subject of selectedSubjects) {
     let correctCount = 0;
-
-    // Count correct answers for this specific subject
     jambQuestions[subject].forEach((q, idx) => {
-      if (userAnswers[subject][idx] === q.a) {
-        correctCount++;
-      }
+      if (userAnswers[subject][idx] === q.a) correctCount++;
     });
 
-    // Calculate the weighted score
-    let subjectScore = (correctCount * weights[subject]).toFixed(1);
+    const weight = weights[subject] || 2.5;
+    const subjectScore = (correctCount * weight).toFixed(1);
 
-    // Create a clean string for this subject
-    // Example: "ENGLISH: 72.5/100"
     summaryParts.push(`✅ ${subject.toUpperCase()}: ${subjectScore}/100`);
   }
 
-  // Join them with a newline character so they stack vertically in WhatsApp
   return summaryParts.join("\n");
 }
 
-// Helper for dynamic encouragement
+// ==================== ENCOURAGEMENT ====================
 function getEncouragement(score) {
   if (score >= 300) return "Excellent! University Bound! 🎓";
   if (score >= 250) return "Great Job! Keep pushing! 🚀";
@@ -239,10 +277,11 @@ function getEncouragement(score) {
   return "Keep practicing, don't give up! 💪";
 }
 
+// ==================== SHOW REVIEW ====================
 function showReview() {
   let reviewHTML = `<div class="review-wrapper"><h2>Exam Review</h2>`;
 
-  for (const subject in jambQuestions) {
+  for (const subject of selectedSubjects) {
     reviewHTML += `<h3 class="review-subject-title">${subject.toUpperCase()}</h3>`;
 
     jambQuestions[subject].forEach((q, idx) => {
@@ -273,66 +312,17 @@ function showReview() {
 
   document.querySelector(".exam-container").innerHTML = reviewHTML;
 }
-// ----------------------------------------
 
-// Event Listeners
-navButtons.forEach((btn) => {
-  btn.onclick = () => switchSubject(btn.dataset.subject);
-});
-
-nextBtn.onclick = () => {
-  if (currentIdx < jambQuestions[currentSubject].length - 1) {
-    currentIdx++;
-    renderQuestion();
-  }
-};
-
-prevBtn.onclick = () => {
-  if (currentIdx > 0) {
-    currentIdx--;
-    renderQuestion();
-  }
-};
-
-submitBtn.onclick = () => {
-  if (confirm("Are you sure you want to submit your exam?")) {
-    submitExam();
-  }
-};
-
-const startScreen = document.getElementById("start-screen");
-const mainContainer = document.getElementById("main-exam-container");
-const beginBtn = document.getElementById("begin-btn");
-
-beginBtn.onclick = () => {
-  // 1. Hide Start Screen
-  startScreen.style.display = "none";
-
-  // 2. Show Exam
-  mainContainer.style.display = "block";
-
-  // 3. Start Logic
-  startTimer();
-  renderQuestion();
-};
-
+// ==================== LOCAL LEADERBOARD ====================
 function saveToLocalLeaderboard(score) {
-  // Get existing scores from LocalStorage or start with an empty array
   let scores = JSON.parse(localStorage.getItem("jamb_history")) || [];
-
-  // Add new score with date
   const newEntry = {
     score: score,
     date: new Date().toLocaleDateString(),
   };
-
   scores.push(newEntry);
-
-  // Sort by highest score first and keep only top 5
   scores.sort((a, b) => b.score - a.score);
   scores = scores.slice(0, 5);
-
-  // Save back to LocalStorage
   localStorage.setItem("jamb_history", JSON.stringify(scores));
 }
 
@@ -353,3 +343,60 @@ function displayLocalLeaderboard() {
 
   container.innerHTML = listHTML;
 }
+
+// ==================== EVENT LISTENERS ====================
+
+// Subject checkboxes
+subjectCheckboxes.forEach((cb) => {
+  cb.addEventListener("change", updateSelection);
+});
+
+// Begin button (Start Screen)
+beginBtn.onclick = () => {
+  startScreen.style.display = "none";
+  subjectSelectionScreen.style.display = "flex";
+};
+
+// Back button
+backToStartBtn.onclick = () => {
+  subjectSelectionScreen.style.display = "none";
+  startScreen.style.display = "flex";
+};
+
+// Start Exam button
+startWithSubjectsBtn.onclick = () => {
+  subjectSelectionScreen.style.display = "none";
+  mainContainer.style.display = "block";
+
+  initializeUserAnswers();
+  renderSubjectNav();
+  startTimer();
+  renderQuestion();
+  if (window.MathJax) {
+    MathJax.typesetPromise([questionArea, optionsArea])
+      .catch(err => console.error("MathJax rendering error:", err));
+  }
+};
+
+// Navigation buttons
+prevBtn.onclick = () => {
+  if (currentIdx > 0) {
+    currentIdx--;
+    renderQuestion();
+  }
+};
+
+nextBtn.onclick = () => {
+  if (currentIdx < jambQuestions[currentSubject].length - 1) {
+    currentIdx++;
+    renderQuestion();
+  }
+};
+
+submitBtn.onclick = () => {
+  if (confirm("Are you sure you want to submit your exam?")) {
+    submitExam();
+  }
+};
+
+// Initialize
