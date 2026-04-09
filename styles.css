@@ -24,7 +24,7 @@ body {
   min-height: 95vh;
   display: flex;
   flex-direction: column;
-  justify-content:space-between ;
+  justify-content: space-between;
   font-family:
     "Montserrat",
     -apple-system,
@@ -34,6 +34,13 @@ body {
 
 main {
   min-height: 70vh;
+}
+
+button {
+  font-family:
+    "Montserrat",
+    -apple-system,
+    sans-serif;
 }
 
 .overlay {
@@ -53,14 +60,14 @@ main {
   margin-top: 20px;
 }
 
-.disclaimer{
+.disclaimer {
   margin-top: 50px;
   max-width: 70%;
   color: var(--text-color);
 }
 
-.disclaimer p{
-  font-size: .875rem;
+.disclaimer p {
+  font-size: 0.875rem;
   font-style: italic;
   line-height: 1.7;
 }
@@ -125,7 +132,26 @@ main {
   font-size: 1.05rem;
 }
 
-/* Dark mode support for selection screen */
+/* ==================== START EXAM BUTTON STATES ==================== */
+
+#start-with-subjects {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #888;
+  color: #ddd;
+  transition: all 0.3s ease;
+  padding: 14px;
+  font-size: 1rem;
+}
+
+#start-with-subjects:not(:disabled) {
+  opacity: 1;
+  cursor: pointer;
+  background: var(--primary-color);
+  color: var(--neutral);
+}
+
+/* Dark Mode Support */
 .darkmode .subject-label {
   background: #2a2a2a;
   border-color: #444;
@@ -135,6 +161,18 @@ main {
   border-color: var(--accent-color);
   background: rgba(212, 175, 55, 0.1);
 }
+
+.darkmode #start-with-subjects {
+  background: #555;
+  color: #aaa;
+}
+
+.darkmode #start-with-subjects:not(:disabled) {
+  background: var(--primary-color);
+  color: var(--neutral);
+}
+
+/* ============ HEADER ========== */
 
 .header {
   display: flex;
@@ -201,6 +239,7 @@ main {
   border-radius: 4px;
   cursor: pointer;
   font-weight: 600;
+  font-size: 1rem;
 }
 
 .btn--primary {
@@ -375,17 +414,17 @@ main {
 }
 
 @media (max-width: 450px) {
-.start-card{
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+  .start-card {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
-.start-card h1{
-  text-align: center;
-}
+  .start-card h1 {
+    text-align: center;
+  }
 
   #subject-selection-screen .start-card {
     padding: 30px 20px;
