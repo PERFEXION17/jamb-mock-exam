@@ -1,0 +1,79 @@
+@import "index.css";
+@import "exam.css";
+@import "blog.css";
+
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  /* ===== COLOUR ===== */
+  --primary-color: #1a1a1a;
+  --accent-color: #d4af37;
+  --bg-color: #f9f9f9;
+  --neutral: white;
+  --text-color: #333;
+
+  /* ===== SPACING ===== */
+  --spacing-xs: 10px;
+  --spacing-md: 20px;
+  --spacing-l: 30px;
+  --spacing-xl: 40px;
+
+  /* ===== FONT SYSTEM ===== */
+  --font: "Montserrat", -apple-system, sans-serif;
+  --font-size-xs: 0.7rem;
+  --font-size-ui: 1rem;
+  --font-size-title: 1.5rem;
+  --font-size-h1: 2.5rem;
+  --font-weight-light: 300;
+  --font-weight-bold: 700;
+
+  /* ===== UTILITY ===== */
+  --border-radius: 10px;
+  --border: 1px solid var(--accent-color);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.darkmode {
+  --primary-color: #f9f9f9;
+  --accent-color: #d4af37;
+  --bg-color: #1a1a1a;
+  --neutral: black;
+  --text-color: #ddd;
+  --shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: var(--font);
+  background-color: var(--bg-color);
+}
+
+main {
+  width: 100%;
+  min-height: 70vh;
+}
+
+button {
+  font-family: var(--font);
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ===== FOOTER ===== */
+.credit {
+  color: var(--text-color);
+  text-align: center;
+  font-size: 14px;
+}
+
+.credit a {
+  color: var(--accent-color);
+}

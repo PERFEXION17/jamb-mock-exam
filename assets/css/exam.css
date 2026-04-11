@@ -1,48 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-
-:root {
-  --primary-color: #1a1a1a;
-  --accent-color: #d4af37;
-  --bg-color: #f9f9f9;
-  --neutral: white;
-  --text-color: #333;
-  --shadow: rgba(0, 0, 0, 0.2);
-}
-
-.darkmode {
-  --primary-color: #f9f9f9;
-  --accent-color: #d4af37;
-  --bg-color: #1a1a1a;
-  --neutral: black;
-  --text-color: #ddd;
-  --shadow: rgba(255, 255, 255, 0.1);
-}
-
-body {
-  margin: 0;
-  padding: 20px;
-  min-height: 95vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-family:
-    "Montserrat",
-    -apple-system,
-    sans-serif;
-  background-color: var(--bg-color);
-}
-
-main {
-  min-height: 70vh;
-}
-
-button {
-  font-family:
-    "Montserrat",
-    -apple-system,
-    sans-serif;
-}
-
+/* ========== EXAM PAGE ========== */
 .overlay {
   min-height: 70vh;
   display: flex;
@@ -226,7 +182,7 @@ button {
   background: var(--neutral);
   color: var(--text-color);
   border-radius: 4px;
-  box-shadow: 0 4px 6px var(--shadow);
+  box-shadow: var(--shadow);
 }
 
 .controls {
@@ -403,17 +359,16 @@ button {
   font-weight: bold;
 }
 
-.credit {
-  color: var(--text-color);
-  text-align: center;
-  font-size: 14px;
-}
-
-.credit a {
-  color: var(--accent-color);
-}
-
 @media (max-width: 450px) {
+  .index-container {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 70%;
+    height: 30vh;
+  }
+
   .start-card {
     padding: 0 20px;
     display: flex;

@@ -1,0 +1,73 @@
+header {
+  position: sticky;
+  top: 0;
+  border-bottom: var(--border);
+}
+
+nav {
+  padding: var(--spacing-md) var(--spacing-l);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+.logo a {
+  color: var(--text-color);
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-bold);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.links a {
+  color: var(--text-color);
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+.index-container {
+  margin: var(--spacing-xl) auto;
+  padding: var(--spacing-md) 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-xl);
+}
+
+.card {
+  width: 40%;
+  height: 50vh;
+  padding: var(--spacing-md);
+  display: flex;
+  /* align-items: flex-end; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+.card p {
+  margin: 0;
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+}
+
+.exam {
+  background-image: url(/assets/img/cbt-image.webp);
+}
+
+.blog {
+  background-image: url(/assets/img/blog-image.webp);
+}

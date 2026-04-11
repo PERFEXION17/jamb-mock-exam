@@ -31,21 +31,6 @@ const backToStartBtn = document.getElementById("back-to-start");
 const selectionStatus = document.getElementById("selection-status");
 const subjectCheckboxes = document.querySelectorAll(".subject-check");
 
-// ==================== DARK MODE ====================
-const themeBtn = document.getElementById("theme-toggle");
-const currentTheme = localStorage.getItem("theme");
-
-if (currentTheme === "dark") {
-  document.body.classList.add("darkmode");
-}
-
-function themeToggle() {
-  document.body.classList.toggle("darkmode");
-  const theme = document.body.classList.contains("darkmode") ? "dark" : "light";
-  localStorage.setItem("theme", theme);
-}
-themeBtn.addEventListener("click", themeToggle);
-
 // ==================== SHUFFLE QUESTIONS ====================
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -373,8 +358,9 @@ startWithSubjectsBtn.onclick = () => {
   startTimer();
   renderQuestion();
   if (window.MathJax) {
-    MathJax.typesetPromise([questionArea, optionsArea])
-      .catch(err => console.error("MathJax rendering error:", err));
+    MathJax.typesetPromise([questionArea, optionsArea]).catch((err) =>
+      console.error("MathJax rendering error:", err),
+    );
   }
 };
 
