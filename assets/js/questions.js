@@ -1279,6 +1279,209 @@ export const jambQuestions = {
     },
   ],
 
+  computer: [
+    {
+      q: "The hexadecimal equivalent of the binary number 10110111 is",
+      o: ["B7", "B8", "C7", "D7"],
+      a: 0
+    },
+    {
+      q: "Which of the following is an example of a volatile memory?",
+      o: ["ROM", "Hard disk", "RAM", "Flash drive"],
+      a: 2
+    },
+    {
+      q: "The process of converting a high-level language to machine language is called",
+      o: ["Compilation", "Interpretation", "Translation", "Both compilation and interpretation"],
+      a: 3
+    },
+    {
+      q: "In networking, the device that connects multiple networks together is called a",
+      o: ["Hub", "Switch", "Router", "Bridge"],
+      a: 2
+    },
+    {
+      q: "Which of the following is NOT a function of the operating system?",
+      o: ["Memory management", "File management", "Virus creation", "Process management"],
+      a: 2
+    },
+    {
+      q: "The ASCII code is used to represent",
+      o: ["Graphics", "Characters", "Sound", "Video"],
+      a: 1
+    },
+    {
+      q: "A computer program that translates one line of high-level language at a time and executes it immediately is called",
+      o: ["Compiler", "Assembler", "Interpreter", "Linker"],
+      a: 2
+    },
+    {
+      q: "The protocol responsible for the reliable delivery of data packets on the internet is",
+      o: ["IP", "TCP", "HTTP", "FTP"],
+      a: 1
+    },
+    {
+      q: "Which generation of computers used transistors?",
+      o: ["First", "Second", "Third", "Fourth"],
+      a: 1
+    },
+    {
+      q: "The term 'topology' in computer networking refers to",
+      o: ["The physical layout of the network", "The speed of data transfer", "The type of operating system", "The number of users"],
+      a: 0
+    },
+    {
+      q: "A malicious software that replicates itself and spreads to other computers is known as",
+      o: ["Virus", "Spyware", "Trojan horse", "Worm"],
+      a: 3
+    },
+    {
+      q: "Which of the following is an example of system software?",
+      o: ["Microsoft Word", "Windows 11", "Google Chrome", "Adobe Photoshop"],
+      a: 1
+    },
+    {
+      q: "The binary number system uses only",
+      o: ["0 and 1", "0 to 9", "A to F", "1 to 10"],
+      a: 0
+    },
+    {
+      q: "The full meaning of URL is",
+      o: ["Uniform Resource Locator", "Universal Resource Link", "Uniform Record Locator", "Unique Resource Location"],
+      a: 0
+    },
+    {
+      q: "Which of the following is a high-level programming language?",
+      o: ["Machine language", "Assembly language", "Python", "Binary code"],
+      a: 2
+    },
+    {
+      q: "The component responsible for all arithmetic and logical operations in the CPU is the",
+      o: ["Control Unit", "Arithmetic Logic Unit (ALU)", "Memory Unit", "Register"],
+      a: 1
+    },
+    {
+      q: "A database management system (DBMS) is used to",
+      o: ["Create and manage databases", "Design websites", "Edit videos", "Play games"],
+      a: 0
+    },
+    {
+      q: "The process of hiding internal details of an object and showing only necessary features is called",
+      o: ["Inheritance", "Polymorphism", "Encapsulation", "Abstraction"],
+      a: 3
+    },
+    {
+      q: "Which of the following is an input device?",
+      o: ["Monitor", "Printer", "Scanner", "Speaker"],
+      a: 2
+    },
+    {
+      q: "The smallest unit of data in a computer is",
+      o: ["Byte", "Bit", "Nibble", "Word"],
+      a: 1
+    },
+    {
+      q: "HTML stands for",
+      o: ["Hyper Text Markup Language", "High Transfer Machine Language", "Hyper Transfer Markup Language", "Home Tool Markup Language"],
+      a: 0
+    },
+    {
+      q: "The main function of the Control Unit in the CPU is to",
+      o: ["Perform calculations", "Store data", "Direct the flow of operations", "Display output"],
+      a: 2
+    },
+    {
+      q: "Which of the following is a secondary storage device?",
+      o: ["RAM", "ROM", "Hard Disk Drive", "Cache memory"],
+      a: 2
+    },
+    {
+      q: "The term 'booting' refers to",
+      o: ["Shutting down the computer", "Starting up the computer", "Installing software", "Deleting files"],
+      a: 1
+    },
+    {
+      q: "A firewall is primarily used for",
+      o: ["Speeding up the computer", "Protecting the network from unauthorized access", "Backing up data", "Editing images"],
+      a: 1
+    },
+    {
+      q: "The number of bits in a byte is",
+      o: ["4", "8", "16", "32"],
+      a: 1
+    },
+    {
+      q: "Which programming paradigm is based on objects and classes?",
+      o: ["Procedural", "Functional", "Object-oriented", "Declarative"],
+      a: 2
+    },
+    {
+      q: "The protocol used to send and receive emails is",
+      o: ["FTP", "SMTP", "HTTP", "TCP"],
+      a: 1
+    },
+    {
+      q: "The first generation of computers used",
+      o: ["Transistors", "Vacuum tubes", "Integrated circuits", "Microprocessors"],
+      a: 1
+    },
+    {
+      q: "In a spreadsheet, the intersection of a row and a column is called",
+      o: ["Cell", "Formula", "Worksheet", "Range"],
+      a: 0
+    },
+    {
+      q: "The term 'cloud computing' refers to",
+      o: ["Using local servers only", "Delivering computing services over the internet", "Storing data on floppy disks", "Using supercomputers"],
+      a: 1
+    },
+    {
+      q: "Which of the following is an example of an operating system?",
+      o: ["Microsoft Excel", "Linux", "Mozilla Firefox", "Adobe Reader"],
+      a: 1
+    },
+    {
+      q: "The binary equivalent of the decimal number 13 is",
+      o: ["1100", "1101", "1110", "1011"],
+      a: 1
+    },
+    {
+      q: "A computer virus that attaches itself to a program is called",
+      o: ["Worm", "Trojan", "File virus", "Spyware"],
+      a: 2
+    },
+    {
+      q: "The full meaning of GUI is",
+      o: ["Graphical User Interface", "General User Instruction", "Global User Internet", "Graphic Utility Interface"],
+      a: 0
+    },
+    {
+      q: "Which of the following is NOT a type of computer network?",
+      o: ["LAN", "WAN", "MAN", "PAN"],
+      a: 3
+    },
+    {
+      q: "The main purpose of an algorithm is to",
+      o: ["Solve a problem step by step", "Store data permanently", "Display graphics", "Connect to the internet"],
+      a: 0
+    },
+    {
+      q: "The memory that loses its content when power is turned off is",
+      o: ["ROM", "RAM", "Hard disk", "Flash memory"],
+      a: 1
+    },
+    {
+      q: "Which of the following is a markup language?",
+      o: ["Python", "Java", "HTML", "C++"],
+      a: 2
+    },
+    {
+      q: "The term 'big data' refers to",
+      o: ["Small sets of structured data", "Large and complex data sets that traditional tools cannot handle", "Only text files", "Only images"],
+      a: 1
+    }
+  ],
+
   government: [
     {
       q: "The system of government in which power is shared between the central government and component units is called",
