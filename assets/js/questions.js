@@ -226,11 +226,6 @@ export const jambQuestions = {
       a: 0,
     },
     {
-      q: "The boy is <b>industrious</b>. Opposite",
-      o: ["lazy", "hardworking", "clever", "noisy"],
-      a: 0,
-    },
-    {
       q: "The news ___ disappointing",
       o: ["are", "is", "were", "have been"],
       a: 1,
@@ -321,24 +316,9 @@ export const jambQuestions = {
       a: 1,
     },
     {
-      q: "He is an <b>extrovert</b>. Opposite",
-      o: ["introvert", "loud person", "traveler", "leader"],
-      a: 0,
-    },
-    {
       q: "One of the boys ___ missing",
       o: ["are", "were", "is", "have"],
       a: 2,
-    },
-    {
-      q: "The clouds are <b>opaque</b>. Opposite",
-      o: ["dark", "transparent", "heavy", "white"],
-      a: 1,
-    },
-    {
-      q: "I look forward to ___ you soon",
-      o: ["see", "seeing", "seen", "be seeing"],
-      a: 1,
     },
   ],
 
