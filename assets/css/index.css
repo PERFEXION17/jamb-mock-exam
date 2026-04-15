@@ -1,7 +1,10 @@
 header {
   position: sticky;
   top: 0;
+  background: var(--bg-color);
   border-bottom: var(--border);
+  z-index: 999;
+
 }
 
 nav {
@@ -31,6 +34,14 @@ nav {
 
 .links a:hover {
   text-decoration: underline;
+}
+
+.theme-toggle {
+  background: transparent;
+  color: var(--text-color);
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
 }
 
 .index-container {

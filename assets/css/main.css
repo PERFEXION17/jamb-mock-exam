@@ -21,7 +21,7 @@
 
   /* ===== FONT SYSTEM ===== */
   --font: "Montserrat", -apple-system, sans-serif;
-  --font-size-xs: 0.7rem;
+  --font-size-xs: 0.875rem;
   --font-size-ui: 1rem;
   --font-size-title: 1.5rem;
   --font-size-h1: 2.5rem;
@@ -30,6 +30,7 @@
 
   /* ===== UTILITY ===== */
   --border-radius: 10px;
+  --border-radius-s: 5px;
   --border: 1px solid var(--accent-color);
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
