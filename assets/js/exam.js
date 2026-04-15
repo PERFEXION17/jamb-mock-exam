@@ -219,10 +219,47 @@ function submitExam() {
       <div class="result-actions">
         <a href="${whatsappUrl}" target="_blank" class="btn btn--whatsapp">Share Result on WhatsApp</a>
         <button class="btn btn--secondary" onclick="window.location.reload()">Retake Exam</button>
-        <button class="btn btn--primary" onclick="showReview()">Review Answers</button>
+        <button id='showReview-btn' class="btn btn--primary">Review Answers</button>
       </div>
     </div>
   `;
+  const showResultBtn = document.getElementById("showReview-btn");
+
+  function showReview() {
+    let reviewHTML = `<div class="review-wrapper"><h2>Exam Review</h2>`;
+
+    for (const subject of selectedSubjects) {
+      reviewHTML += `<h3 class="review-subject-title">${subject.toUpperCase()}</h3>`;
+
+      jambQuestions[subject].forEach((q, idx) => {
+        let userAns = userAnswers[subject][idx];
+        let isCorrect = userAns === q.a;
+        let statusClass = isCorrect ? "text-correct" : "text-wrong";
+
+        let userAnsText = userAns !== null ? q.o[userAns] : "Not Attempted";
+        let correctAnsText = q.o[q.a];
+
+        reviewHTML += `
+        <div class="review-item">
+          <p class="review-q"><strong>Q${idx + 1}:</strong> ${q.q}</p>
+          <div class="review-answers">
+            <p>Correct Answer: <span class="text-correct">${correctAnsText}</span></p>
+            <p>Your Answer: <span class="${statusClass}">${userAnsText}</span></p>
+          </div>
+        </div>
+      `;
+      });
+    }
+
+    reviewHTML += `
+    <div class="review-footer">
+      <button class="btn btn--primary" onclick="window.location.reload()">Retake Exam</button>
+    </div>
+  </div>`;
+
+    document.querySelector(".exam-container").innerHTML = reviewHTML;
+  }
+  showResultBtn.addEventListener("click", showReview);
 
   displayLocalLeaderboard();
 }
@@ -260,42 +297,6 @@ function getEncouragement(score) {
   if (score >= 250) return "Great Job! Keep pushing! 🚀";
   if (score >= 200) return "Good effort, you're getting there! 👍";
   return "Keep practicing, don't give up! 💪";
-}
-
-// ==================== SHOW REVIEW ====================
-function showReview() {
-  let reviewHTML = `<div class="review-wrapper"><h2>Exam Review</h2>`;
-
-  for (const subject of selectedSubjects) {
-    reviewHTML += `<h3 class="review-subject-title">${subject.toUpperCase()}</h3>`;
-
-    jambQuestions[subject].forEach((q, idx) => {
-      let userAns = userAnswers[subject][idx];
-      let isCorrect = userAns === q.a;
-      let statusClass = isCorrect ? "text-correct" : "text-wrong";
-
-      let userAnsText = userAns !== null ? q.o[userAns] : "Not Attempted";
-      let correctAnsText = q.o[q.a];
-
-      reviewHTML += `
-        <div class="review-item">
-          <p class="review-q"><strong>Q${idx + 1}:</strong> ${q.q}</p>
-          <div class="review-answers">
-            <p>Correct Answer: <span class="text-correct">${correctAnsText}</span></p>
-            <p>Your Answer: <span class="${statusClass}">${userAnsText}</span></p>
-          </div>
-        </div>
-      `;
-    });
-  }
-
-  reviewHTML += `
-    <div class="review-footer">
-      <button class="btn btn--primary" onclick="window.location.reload()">Retake Exam</button>
-    </div>
-  </div>`;
-
-  document.querySelector(".exam-container").innerHTML = reviewHTML;
 }
 
 // ==================== LOCAL LEADERBOARD ====================
