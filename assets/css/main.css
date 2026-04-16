@@ -8,10 +8,10 @@
 :root {
   /* ===== COLOUR ===== */
   --primary-color: #1a1a1a;
-  --accent-color: #d4af37;
-  --bg-color: #f9f9f9;
+  --accent-color: #c8a80b;
+  --bg-color: hsl(240, 90%, 98%);
   --neutral: white;
-  --text-color: #333;
+  --text-color: #090909;
 
   /* ===== SPACING ===== */
   --spacing-xs: 10px;
@@ -33,15 +33,16 @@
   --border-radius-s: 5px;
   --border: 1px solid var(--accent-color);
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  --transition: all .3s ease;
 }
 
 .darkmode {
   --primary-color: #f9f9f9;
   --accent-color: #d4af37;
-  --bg-color: #1a1a1a;
-  --neutral: black;
-  --text-color: #ddd;
-  --shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+  --bg-color: #000010;
+  --neutral: #00000e;
+  --text-color: #eee;
+  --shadow: 0 4px 6px rgba(255, 255, 255, 0.2);
 }
 
 body {
@@ -53,6 +54,7 @@ body {
   justify-content: space-between;
   font-family: var(--font);
   background-color: var(--bg-color);
+  transition: var(--transition);
 }
 
 main {
