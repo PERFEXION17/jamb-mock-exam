@@ -1,11 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PrepArena</title>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/thin/style.css"
+    />
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8054586171745918"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo"><a href="index.html">PrepArena</a></div>
+        <div class="links">
+          <a href="exam.html">Exams</a>
+          <a href="blog.html">Blog</a>
+        </div>
+        <div class="utilities">
+          <button id="theme-toggle" class="theme-toggle">
+            <i class="ph-thin ph-power"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="blog-container">
+      <h2 class="page-title">PrepArena Blog</h2>
+      <p class="page-subtitle">
+        Motivation, Strategies & Tips to help you crush your exams
+      </p>
+
+      <div class="blog-grid" id="blog-grid"></div>
+    </main>
+
+    <footer>
+      <div class="credit">
+        <p>
+          &copy; 2026 All Rights Reserved |
+          <a
+            href="https://wa.me/2348100334346?text=Hello,%20Mr.%20Achusim%20Chibuike%20Joseph"
+            target="_blank"
+            >PERFEXION INC.</a
+          >
+        </p>
+      </div>
+    </footer>
+    <script type="module" src="/assets/js/script.js"></script>
+    <script type="module">
+      import { blogPosts } from "/assets/js/blog.js";
+      const grid = document.getElementById("blog-grid");
+
+      blogPosts.forEach((post) => {
+        const card = document.createElement("div");
+        card.className = "blog-card";
+        card.innerHTML = `
+        <div class="blog-card-category">${post.category}</div>
+        <h3 class="blog-card-title">${post.title}</h3>
+        <p class="blog-card-excerpt">${post.excerpt}</p>
+        <div class="blog-card-footer">
+          <span>${post.date}</span>
+          <span>${post.readTime}</span>
+        </div>
+        <a href="blog-post.html?id=${post.id}" class="btn btn--primary blog-read-btn">Read Article</a>
+      `;
+        grid.appendChild(card);
+      });
+    </script>
+  </body>
 </html>

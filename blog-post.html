@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PrepArena</title>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/thin/style.css"
+    />
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8054586171745918"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo"><a href="index.html">PrepArena</a></div>
+        <div class="links">
+          <a href="exam.html">Exams</a>
+          <a href="blog.html">Blog</a>
+        </div>
+        <div class="utilities">
+          <button id="theme-toggle" class="theme-toggle">
+            <i class="ph-thin ph-power"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="blog-post-container" id="blog-content"></main>
+
+    <footer>
+      <div class="credit">
+        <p>
+          &copy; 2026 All Rights Reserved |
+          <a
+            href="https://wa.me/2348100334346?text=Hello,%20Mr.%20Achusim%20Chibuike%20Joseph"
+            target="_blank"
+            >PERFEXION INC.</a
+          >
+        </p>
+      </div>
+    </footer>
+    <script type="module" src="/assets/js/script.js"></script>
+    <script type="module">
+      import { blogPosts } from "/assets/js/blog.js";
+      const blogContent = document.getElementById("blog-content");
+
+      if (!blogContent) {
+        console.error("Error: Element with id 'blog-content' not found!");
+      } else {
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = parseInt(urlParams.get("id"));
+
+        const post = blogPosts.find((p) => p.id === postId);
+
+        if (post) {
+          blogContent.innerHTML = `
+      <article class="blog-article">
+        <div class="blog-meta">
+          <span class="blog-category">${post.category}</span>
+          <span>${post.date} • ${post.readTime}</span>
+        </div>
+        <h1 class="blog-title">${post.title}</h1>
+        <div class="blog-body">
+          ${post.content}
+        </div>
+        <a href="blog.html" class="btn btn--primary" style="margin-top: 40px;">← Back to All Articles</a>
+      </article>
+    `;
+          document.title = `${post.title} - PrepArena`;
+        } else {
+          blogContent.innerHTML = `<h2 style="text-align:center; padding: 50px;">Post not found</h2>`;
+        }
+      }
+    </script>
+  </body>
+</html>
