@@ -157,4 +157,69 @@ export const blogPosts = [
       </br>
     `,
   },
+  {
+    id: 3,
+    slug: "how-to-check-jamb-score-2026",
+    title: "How to Check Your JAMB Score 2026 - Step-by-Step Guide",
+    date: "2026-04-17",
+    category: "JAMB Guide",
+    excerpt:
+      "Just finished your JAMB exam? Here is the fastest and most accurate way to check your 2026 UTME score.",
+    readTime: "7 min",
+    content: `
+    <h2>The Big Moment: When Can You Check Your JAMB Score?</h2>
+    <p>After sitting the 2026 UTME, the wait can feel endless. The good news is that JAMB usually releases results within 24 to 48 hours after your exam. However, results are often released in batches, so do not panic if yours is not immediately available.</p>
+
+    <h2>Fastest Ways to Check Your JAMB 2026 Score</h2>
+    <p>Here are the two most reliable methods, starting with the mandated and quickest option:</p>
+
+    <h2>Method 1: Check via SMS (The Official & Fastest Option)</h2>
+    <p>To prevent portal congestion, JAMB often makes the SMS method the only available option immediately after results are released.</p>
+    <ol>
+      <li>Ensure you are using the exact mobile number linked to your JAMB profile during registration.</li>
+      <li>Open your messaging app.</li>
+      <li>Type <strong>UTMERESULT</strong> (ensure it is one word, with no spaces or registration number added).</li>
+      <li>Send the message to <strong>55019</strong> or <strong>66019</strong>.</li>
+      <li>You will receive your result via SMS shortly. Ensure you have at least ₦50 airtime on your line, as standard network charges apply.</li>
+    </ol>
+
+    <h2>Method 2: Check Online via the JAMB Portal</h2>
+    <p><em>Note: The online portal checking is usually enabled a few days after the initial SMS release. You will need this method to print your Original JAMB Result Slip for Post-UTME screening.</em></p>
+    <ol>
+      <li>Visit the official JAMB eFacility portal: <a href='https://efacility.jamb.gov.ng' target='_blank' style='text-decoration: underline;'><strong>JAMB E-Facility</strong></a>.</li>
+      <li>Log in using your JAMB-linked email address and the password you created during registration.</li>
+      <li>Click on <strong>“Print Result Slip”</strong> or <strong>“Check UTME Result”</strong>.</li>
+      <li>If your result is ready, it will display on the screen. (Note: Printing the official slip with your passport photograph requires a token fee paid via Remita).</li>
+      <li>Save a clear PDF copy or print out the result for your records.</li>
+    </ol>
+
+    <h2>What Your Score Means</h2>
+    <p>JAMB scores are calculated out of 400. Here is a quick guide to help you understand where you stand:</p>
+    <ul>
+      <li><strong>280 and above</strong> → <strong>Elite Tier:</strong> Extremely competitive. You are in a strong position for "the big four" (Medicine, Law, Nursing, and Pharmacy) at top-tier Federal Universities.</li>
+      <li><strong>240 - 279</strong> → <strong>High Merit:</strong> Very strong. You have a great chance for Engineering, Computer Science, and Social Sciences at most institutions.</li>
+      <li><strong>200 - 239</strong> → <strong>Solid Contender:</strong> A safe zone for the majority of courses. With a good Post-UTME performance, you can secure admission into many State and Federal universities.</li>
+      <li><strong>160 - 199</strong> → <strong>Flexible Entry:</strong> You remain eligible for many degree programmes. While you may need to consider a "Change of Course/Institution" to a less competitive field, admission is still very much within reach.</li>
+      <li><strong>Below 160</strong> → <strong>Alternative Pathways:</strong> Consider exploring Private Universities, Polytechnics, or Colleges of Education, many of which accept scores in this range.</li>
+    </ul>
+
+    <h2>What to Do Immediately After Checking Your Score</h2>
+    <ol>
+      <li><strong>Celebrate your effort:</strong> You have completed a major step!</li>
+      <li><strong>Save or print your result:</strong> Keep a digital and physical copy immediately.</li>
+      <li><strong>Review your options:</strong> If the score is lower than expected, do not panic. Many students still gain admission by changing to a less competitive course or performing well in Post-UTME.</li>
+      <li><strong>Start preparing for Post-UTME:</strong> Begin as soon as possible, as some schools begin screening very early.</li>
+    </ol>
+
+    <h2>How PrepArena Continues to Support You</h2>
+    <p>Even after your exam, you can still use our JAMB Mock Simulator to review weak topics and stay sharp for Post-UTME. The simulator gives you instant, detailed feedback that the official result does not provide.</p>
+    <p>Keep practising — every mock you take now builds the confidence and speed you will need for the next stage of your admission journey.</p>
+
+    <h2>Final Advice</h2>
+    <p>Whether your score is 180 or 320+, remember this: Your JAMB result is not the end of your story. It is just one chapter.</p>
+    <p>Stay calm, stay focused, and take the next step with confidence. You have already proven you can face a big challenge.</p>
+    <p>Your admission dream is still very much possible. Keep pushing!</p>
+    </br>
+  `,
+  },
 ];
