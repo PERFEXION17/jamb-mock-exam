@@ -55,27 +55,40 @@
         console.error("Error: Element with id 'blog-content' not found!");
       } else {
         const urlParams = new URLSearchParams(window.location.search);
-        const postId = parseInt(urlParams.get("id"));
 
-        const post = blogPosts.find((p) => p.id === postId);
+        const postSlug = urlParams.get("slug");
+        console.log("Slug from URL:", postSlug);
+        console.log(
+          "All Available Slugs:",
+          blogPosts.map((p) => p.slug),
+        );
+
+        const post = blogPosts.find((p) => p.slug === postSlug);
 
         if (post) {
           blogContent.innerHTML = `
-      <article class="blog-article">
-        <div class="blog-meta">
-          <span class="blog-category">${post.category}</span>
-          <span>${post.date} • ${post.readTime}</span>
-        </div>
-        <h1 class="blog-title">${post.title}</h1>
-        <div class="blog-body">
-          ${post.content}
-        </div>
-        <a href="blog.html" class="btn btn--primary" style="margin-top: 40px;">← Back to All Articles</a>
-      </article>
-    `;
+        <article class="blog-article">
+          <div class="blog-meta">
+            <span class="blog-category">${post.category}</span>
+            <span>${post.date} • ${post.readTime}</span>
+          </div>
+          <h1 class="blog-title">${post.title}</h1>
+          <div class="blog-body">
+            ${post.content}
+          </div>
+          <a href="blog.html" class="btn btn--primary" style="margin-top: 40px;">← Back to All Articles</a>
+        </article>
+      `;
           document.title = `${post.title} - PrepArena`;
         } else {
-          blogContent.innerHTML = `<h2 style="text-align:center; padding: 50px;">Post not found</h2>`;
+          blogContent.innerHTML = `
+        <div style="text-align:center; padding: 80px 20px; color: var(--text-color);">
+          <h2>Article Not Found</h2>
+          <p>We couldn't find the guide you're looking for.</p>
+          </br>
+          <a href="blog.html" class="btn btn--primary">Back to Blog</a>
+        </div>
+      `;
         }
       }
     </script>
