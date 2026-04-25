@@ -281,16 +281,6 @@ export const jambQuestions = {
       a: 2,
     },
     {
-      q: "The clouds are <b>opaque</b>. Opposite",
-      o: ["dark", "transparent", "heavy", "white"],
-      a: 1,
-    },
-    {
-      q: "I look forward to ___ you soon",
-      o: ["see", "seeing", "seen", "be seeing"],
-      a: 1,
-    },
-    {
       q: "The news ___ disappointing",
       o: ["are", "is", "were", "have been"],
       a: 1,
@@ -301,34 +291,34 @@ export const jambQuestions = {
       a: 0,
     },
     {
-      q: "The surface is <b>rugged</b>. Opposite",
-      o: ["smooth", "rough", "hard", "tough"],
-      a: 0,
-    },
-    {
       q: "The task was <b>arduous</b>. Nearest in meaning",
       o: ["simple", "difficult", "interesting", "short"],
       a: 1,
     },
     {
-      q: "The food was <b>palatable</b>. Opposite",
-      o: ["tasty", "inedible", "hot", "cheap"],
-      a: 1,
-    },
-    {
-      q: "The student was <b>audacious</b>. Nearest in meaning",
-      o: ["quiet", "bold", "shy", "dull"],
-      a: 1,
-    },
-    {
-      q: "The king was <b>benevolent</b>. Nearest in meaning",
-      o: ["cruel", "kind", "powerful", "old"],
-      a: 1,
-    },
-    {
-      q: "The land is <b>fertile</b>. Opposite",
-      o: ["barren", "green", "productive", "large"],
+      q: "The success of the project <b>hinges</b> on your contribution. Nearest in meaning",
+      o: ["depends", "rejects", "fails", "starts"],
       a: 0,
+    },
+    {
+      q: "The principal, as well as the teachers, ___ expected at the hall.",
+      o: ["are", "is", "were", "have been"],
+      a: 1,
+    },
+    {
+      q: "To see <b>eye to eye</b> with someone means",
+      o: ["to argue", "to agree", "to stare", "to avoid"],
+      a: 1,
+    },
+    {
+      q: "His <b>ephemeral</b> fame didn't last the year. Opposite",
+      o: ["short-lived", "permanent", "sudden", "cheap"],
+      a: 1,
+    },
+    {
+      q: "You aren't going to the party, ___?",
+      o: ["aren't you", "do you", "are you", "will you"],
+      a: 2,
     },
   ],
 
